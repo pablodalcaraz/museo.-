@@ -1,0 +1,58 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/style.css")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet")
+    <link rel="icon" type="image/png" href="/image/logo.png" style='whidth: 32px, heigth:32px'>
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+    title Museo Metropolitano de Arte
+  body
+    .contenedor
+
+      .presentacion 
+        p En esté sitio podrás ver las obras expuestas en el Museo Metropolitano de Arte de Nueva York
+
+      .logo
+        img.animate__animated.animate__backInDown(src="/image/logo.png" alt="logo met")
+      .titulo-principal
+        h1 Museo Metropolitano de Arte
+
+
+      .deslizar
+        p (Desliza hacia abajo para buscar obras)
+        img.flecha(src="/image/flecha-hacia-abajo-gris.png", alt="flecha gris")
+        
+      .buscador
+        h2 Buscador de Obras 
+        p (Completa al menos uno de los campos)
+        form(action="/search" method="get")
+          label(for="departmentId") Departamento:
+          select(name="departmentId" id='departmentId') 
+            option(value= '') Seleccione un departamento
+            each departamento in departamentosTraducidos
+              option(value=departamento.departmentId) #{departamento.displayName}
+          
+          label(for="keyword") Palabra clave:
+          input(type="text" name="keyword" id="clave")
+          p.errorClave
+
+          label(for="location") Localización:
+          input(type="text" name="location" id="localizacion")
+          p.errorLocalizacion
+
+          p.error *Selecciona un departamento o completa un campo.
+
+          button.buscar(type="submit") Buscar
+          
+
+    p.copyright Copyright© 2024 - Página creada por pablodalcaraz - Todos los derechos reservados.  
+      a(href="https://github.com/pablodalcaraz/museo-.git" target="_blank"  class="github-icon")
+        i.fab.fa-github  
+      a(href='https://portfoliopabloalcaraz.netlify.app/' target='_blank'  class='web-icon')
+        img(src="/image/web-icon.png", alt="web-icon")
+    
+
+      script(src="/functions.js")     
