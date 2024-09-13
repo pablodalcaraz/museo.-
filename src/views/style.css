@@ -1,3 +1,31 @@
+:root{
+    --color_1: #000;
+    --color_2: #fff;
+    --color_card: #fff;
+    --color_p: #898ca3;
+    --color_footer: #000;
+    --color_3: #fffeff;
+    --color_4: #d8dee6;
+    --color_5: #979fa7;
+    --color_6: #f00424;
+    --color_7: #f9fafc;
+    --color_8: #272727;
+    --color_9: #898ca3;
+}
+.dark{
+    --color_1: #fff;
+    --color_2: #000;
+    --color_card:hsl(0, 0%, 47%);
+    --color_p: #000;
+    --color_footer: #000;
+    --color_3: #fffeff;
+    --color_4: #d8dee6;
+    --color_5: #979fa7;
+    --color_6: #f00424;
+    --color_7: #272727;
+    --color_8: #f9fafc;   
+    --color_9: #898ca3;
+}
 body,
 html {
     margin: 0;
@@ -5,7 +33,7 @@ html {
 }
 
 .contenedor {
-    background: linear-gradient(0deg, #000, #272727, #000);
+    background: linear-gradient(0deg, var(--color_1), var(--color_8), var(--color_1));
     opacity: 80%;
     position: relative;
     height: 100vh;
@@ -78,7 +106,7 @@ html {
 }
 
 .presentacion p {
-    color: #fff;
+    color: var(--color_2);
 }
 
 .titulo {
@@ -119,7 +147,7 @@ html {
 }
 
 .deslizar p {
-    color: #d8dee6;
+    color: var(--color_8);
 }
 
 .deslizar .flecha {
@@ -146,8 +174,8 @@ html {
 .buscar {
     border-radius: 16px;
     border: none;
-    background-color: #f00424;
-    color: #d8dee6;
+    background-color: var(--color_6);
+    color: var(--color_4);
     height: 30px;
     width: 100px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
@@ -156,14 +184,14 @@ html {
 
 .buscar:hover {
     background-color: #000;
-    color: #d8dee6;
+    color: var(--color_4);
     transform: scale(1.1);
 }
 
 .buscador {
     text-align: center;
     padding: 30px;
-    background-color: #d8dee6;
+    background-color: var(--color_4);
     border-radius: 16px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
     cursor: pointer;
@@ -191,8 +219,8 @@ html {
 
 .buscador select {
     border-radius: 16px;
-    border: 1px solid #000;
-    background-color: #979fa7;
+    border: 1px solid var(--color_1);
+    background-color: var(--color_5);
     margin: 10px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
     cursor: pointer;
@@ -206,8 +234,8 @@ html {
 
 .buscador input {
     border-radius: 16px;
-    border: 1px solid #000;
-    background-color: #979fa7;
+    border: 1px solid var(--color_1);
+    background-color: var(--color_5);
     width: 290px;
     margin: 10px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
@@ -216,31 +244,31 @@ html {
 }
 
 .buscador label {
-    color: #000;
+    color: var(--color_1);
     font-size: 20px;
 }
 
 .error {
-    color: #f00424 !important;
+    color: var(--color_6) !important;
     display: none;
 }
 
 
 .titulo-principal h1 {
-    color: #d8dee6;
+    color: var(--color_4);
     font-size: 60px;
     padding: 30px;
 
 }
 
 .titulo h1 {
-    color: #000;
+    color: var(--color_1);
     font-size: 30px;
 }
 
 .cont-resultados {
     text-align: center;
-    background-color: #f9fafc;
+    background-color: var(--color_7);
     background-position: center;
     background-repeat: repeat-y;
 
@@ -251,8 +279,36 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
 
+}
+.oscuro{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+    transform: transition 0.3s ease;
+}
+.claro{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+    transform: transition 0.3s ease;
+    display: none;
+}
+.fas{
+    font-size: 20px;
+    color: var(--color_1);
+    padding: 20px; 
+}
+.fas:hover{
+    color: var(--color_5);
+    transform: scale(1.2);
+}
 .logo_chico img {
     width: 50px;
     padding-top: 10px;
@@ -260,7 +316,9 @@ html {
 
 .encabezado .titulo {
     padding: 0;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.8);
 }
+
 
 .grid {
     display: grid;
@@ -268,14 +326,16 @@ html {
     margin: 30px;
 
 }
-
+.card{
+    border-radius: 0 !important;
+}
 .card {
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
     width: 300px;
-    background: #fff !important;
+    background: var(--color_card) !important;
     margin: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -293,7 +353,7 @@ html {
 }
 
 .card p {
-    color: #898ca3;
+    color: var(--color_p);
 }
 
 .card h3 {
@@ -453,9 +513,9 @@ p.sinAdicionales {
 .volver a {
     text-decoration: none;
     border-radius: 16px;
-    background-color: #898ca3;
+    background-color: var(--color_9);
     padding: 5px;
-    color: #000;
+    color: var(--color_1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     padding-left: 50px;
@@ -468,8 +528,8 @@ p.sinAdicionales {
 }
 
 .volver a:hover {
-    background-color: #d8dee6;
-    color: #000;
+    background-color: var(--color_4);
+    color: var(--color_1);
     transform: scale(1.1);
 }
 
@@ -483,26 +543,28 @@ p.sinAdicionales {
 }
 
 .paginacion p {
+    color: var(--color_8);
     font-size: 15px;
     margin-top: 20px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 .paginacion a {
-    color: #000;
+    color: var(--color_1);
     text-decoration: none;
     font-size: 20px;
     transition: transform 0.3s ease, opacity 0.3s ease;
-
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 .paginacion a:hover {
-    color: #979fa7;
+    color: var(--color_5);
     transform: scale(1.2);
 }
 
 .copyright {
-    background-color: #000;
-    color: #979fa7;
+    background-color: var(--color_footer);
+    color: var(--color_5);
     text-align: center;
     padding: 20px;
     font-size: 12px;
@@ -521,7 +583,7 @@ p.sinAdicionales {
 }
 
 .copyright i:hover {
-    color: #fff;
+    color: var(--color_2);
     transform: scale(1.1);
 }
 
@@ -541,7 +603,7 @@ img {
 }
 
 .fab {
-    color: #898ca3;
+    color: var(--color_9);
     font-size: 20px;
 }
 

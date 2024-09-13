@@ -229,4 +229,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+  //modo claro/oscuro
+  const body = document.body;
+  const claro = document.getElementById('ligth');
+  const oscuro = document.getElementById('dark');
+
+  claro.addEventListener('click',() => {
+      body.classList.remove('dark');
+      claro.style.display = 'none';
+      oscuro.style.display = 'block'
+  })
+  oscuro.addEventListener('click',() => {
+    body.classList.add('dark');
+    oscuro.style.display = 'none';
+    claro.style.display = 'block';
+  })
+
 });
