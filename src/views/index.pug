@@ -23,8 +23,8 @@ html(lang="es")
 
       .deslizar
         p (Desliza hacia abajo para buscar obras)
-        img.flecha(src="/image/flecha-hacia-abajo-gris.png", alt="flecha gris")
-        
+        img.flecha(src="/image/flecha-hacia-abajo-gris.png" alt="flecha gris")
+
       .buscador
         h2 Buscador de Obras 
         p (Completa al menos uno de los campos)
@@ -34,25 +34,25 @@ html(lang="es")
             option(value= '') Seleccione un departamento
             each departamento in departamentosTraducidos
               option(value=departamento.departmentId) #{departamento.displayName}
-          
+
           label(for="keyword") Palabra clave:
           input(type="text" name="keyword" id="clave")
           p.errorClave
 
           label(for="location") Localización:
-          input(type="text" name="location" id="localizacion")
+          input(type="text" name="geoLocation" id="location")
           p.errorLocalizacion
 
           p.error *Selecciona un departamento o completa un campo.
 
           button.buscar(type="submit") Buscar
-          
+
 
     p.copyright Copyright© 2024 - Página creada por pablodalcaraz - Todos los derechos reservados.  
-      a(href="https://github.com/pablodalcaraz/museo-.git" target="_blank"  class="github-icon")
+      a(href="https://github.com/pablodalcaraz/museo-.git" target="_blank" class="github-icon")
         i.fab.fa-github  
-      a(href='https://portfoliopabloalcaraz.netlify.app/' target='_blank'  class='web-icon')
-        img(src="/image/web-icon.png", alt="web-icon")
-    
+      a(href='https://portfoliopabloalcaraz.netlify.app/' target='_blank' class='web-icon')
+        img(src="/image/web-icon.png" alt="web-icon")
+
 
       script(src="/functions.js")     

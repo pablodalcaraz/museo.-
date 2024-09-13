@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^1.7.7",
     "express": "^4.21.0",
+    "met": "file:",
     "node-google-translate-skidz": "^1.1.2",
     "pug": "^3.0.3"
   }

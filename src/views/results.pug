@@ -11,11 +11,11 @@ html(lang="es")
   body
   .cont-resultados
     .encabezado
-        .logo_chico 
-            img(src="/image/logo.png" alt="logo met")
-        .titulo
-            h1 Resultados
-    
+      .logo_chico 
+        img(src="/image/logo.png" alt="logo met")
+      .titulo
+        h1 Resultados
+
     .flecha 
       button.bajar(type="button") 
         img(src="/image/flecha-hacia-abajo.png" alt="flecha")
@@ -29,8 +29,8 @@ html(lang="es")
       p= `Página ${page} de ${totalPages}`
       if page < totalPages
         a(href=`/search?departmentId=${departmentId}&keyword=${keyword}&location=${location}&page=${page + 1}`)  >>>        
-    
-    
+
+
 
     .grid
       each object in objects
@@ -41,23 +41,26 @@ html(lang="es")
           p Cultura: #{object.culture || 'Desconocida'}
           p Dinastía: #{object.dynasty || 'Desconocida'}
           if object.primaryImage
-            button.ver-imagenes(type="button" data-id=object.objectId || object.objectID) Ver imágenes adicionales
+            if object.additionalImages && object.additionalImages.length > 0
+              button.ver-imagenes(type="button" data-id=object.objectId || object.objectID) Ver imágenes adicionales
+            else 
+              p.sinAdicionales Sin imágenes adicionales 
           else 
             p.sinImagen Obra sin imágenes  
         .imagen_adicional(data-id=object.objectId || object.objectID)
           button.cerrar(type='botton') 
-           i.fa.fa-times.aria
+            i.fa.fa-times.aria
           .carrusel-container
             if object.additionalImages && object.additionalImages.length > 0       
               button.atras(type='button') 
                 img(src='/image/flecha-izquierda.png' alt='flecha izquierda')
               .carrusel-image  
-                 each image in object.additionalImages 
-                  img.image(src=image && image != '' ? image : '/image/sinImagen.jpg' alt=object.title ||'Imagen sin título', class='img-fluid')
+                each image in object.additionalImages 
+                  img.image(src=image && image != '' ? image : '/image/sinImagen.jpg' alt=object.title ||'Imagen sin título' class='img-fluid')
               button.adelante 
                 img(src='/image/flecha-derecha.png' alt='flecha derecha') 
-           
-           
+
+
 
     .paginacion
       p.objetos 
@@ -68,13 +71,13 @@ html(lang="es")
         a(href=`/search?departmentId=${departmentId}&keyword=${keyword}&location=${location}&page=${page + 1}`)  >>>
 
     .volver
-        a(href="/") Nueva búsqueda
+      a(href="/") Nueva búsqueda
 
 
     p.copyright Copyright© 2024 - Página creada por pablodalcaraz - Todos los derechos reservados.  
       a(href="https://github.com/pablodalcaraz/museo-.git" target="_blank" class="github-icon")
         i.fab.fa-github  
       a(href='https://portfoliopabloalcaraz.netlify.app/' target='_blank' class='web-icon')
-          img(src="/image/web-icon.png", alt="web-icon")
+        img(src="/image/web-icon.png" alt="web-icon")
 
-          script(src="/functions.js")
+        script(src="/functions.js")

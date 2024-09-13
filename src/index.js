@@ -49,7 +49,7 @@ app.get('/search', async (req, res) => {
     try {
         const departmentId = req.query.departmentId || '';
         const keyword = req.query.keyword || '';
-        const location = req.query.location || '';
+        const location = req.query.geoLocation || '';
         const page = parseInt(req.query.page) || 1;
         const limit = 20; 
         const offset = (page - 1) * limit;
