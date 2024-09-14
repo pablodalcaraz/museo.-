@@ -10,15 +10,22 @@ html(lang="es")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
     title Museo Metropolitano de Arte
   body
-    .contenedor
 
+    .contenedor
+      .encabezado 
+        button.claro(type='button' id='ligth')
+          i.fas.fa-sun(aria-hidden="true")
+        button.oscuro(type='button' id='dark')
+          i.fas.fa-moon(id='dark'  aria-hidden="true") 
+      
       .presentacion 
         p En esté sitio podrás ver las obras expuestas en el Museo Metropolitano de Arte de Nueva York
+        
 
       .logo
         img.animate__animated.animate__backInDown(src="/image/logo.png" alt="logo met")
       .titulo-principal
-        h1 Museo Metropolitano de Arte
+        
 
 
       .deslizar
@@ -28,23 +35,28 @@ html(lang="es")
       .buscador
         h2 Buscador de Obras 
         form(action="/search" method="get")
-          label(for="departmentId") Departamento:
-          select(name="departmentId" id='departmentId') 
-            option(value= '') Seleccione un departamento
-            each departamento in departamentosTraducidos
-              option(value=departamento.departmentId) #{departamento.displayName}
-
-          label(for="keyword") Palabra clave:
-          input(type="text" name="keyword" id="clave")
-          p.errorClave
-
-          label(for="location") Localización:
-          input(type="text" name="geoLocation" id="location")
-          p.errorLocalizacion
-
-          p.error *Selecciona un departamento o completa un campo.
-
+          .items
+            .departamento
+              label(for="departmentId") Departamento
+              select(name="departmentId" id='departmentId') 
+                option(value= '') Seleccione un departamento
+                each departamento in departamentosTraducidos
+                  option(value=departamento.departmentId) #{departamento.displayName}
+              p.error *Selecciona un departamento o completa un campo.    
+            .clave
+              label(for="keyword") Palabra clave
+              input(type="text" name="keyword" id="clave")
+              p.errorClaveN Este campo no admite números.
+              p.errorClaveC Este campo admite hasta 20 caracteres.
+          
+            .localizacion
+              label(for="location") Localización
+              input(type="text" name="geoLocation" id="location")
+              p.errorLocalizacionN Este campo no admite núemeros 
+              p.errorLocalizacionC Este campo admite hasta 20 caracteres. 
+          
           button.buscar(type="submit") Buscar
+        
 
 
     p.copyright Copyright© 2024 - Página creada por pablodalcaraz - Todos los derechos reservados.  

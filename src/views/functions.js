@@ -1,15 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
   history.scrollRestoration = "manual";
   window.scrollTo(0, 0);
+  
+  
+  //modo claro/oscuro
+  const body = document.body;
+  const claro = document.getElementById('ligth');
+  const oscuro = document.getElementById('dark');
+  const modoGuardado = localStorage.getItem('modo') || 'ligth';
+  
+  if (modoGuardado === 'dark') {
+    body.classList.add('dark');
+    oscuro.style.display = 'none';
+    claro.style.display = 'block';
+  } else {
+    body.classList.remove('dark');
+    claro.style.display = 'none';
+    oscuro.style.display = 'block';
+  }
+  
+    oscuro.addEventListener('click',() => {
+      body.classList.add('dark');
+      oscuro.style.display = 'none';
+      claro.style.display = 'block';
+      localStorage.setItem('modo','dark');
+    })
+  claro.addEventListener('click',() => {
+      body.classList.remove('dark');
+      claro.style.display = 'none';
+      oscuro.style.display = 'block'
+      localStorage.setItem('modo','ligth');
+  })
+
 
   //background dinámico
   const contenedor = document.querySelector(".contenedor");
-  if (contenedor) {
     let backgrounds = [
+      'url("/image/imagen7.jpg")',
       'url("/image/museo.jpg")',
       'url("/image/METinterior.jpeg")',
+      'url("/image/imagen6.jpg")',
       'url("/image/imagen1.jpg")',
       'url("/image/imagen2.jpeg")',
+      'url("/image/imagen8.jpg")',
       'url("/image/imagen3.jpeg")',
       'url("/image/imagen4.jpg")',
       'url("/image/imagen5.jpg")'
@@ -66,9 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const departamento = document.getElementById("departmentId");
     const clave = document.getElementById("clave");
-    const errorClave = document.querySelector(".errorClave");
+    const errorClaveC = document.querySelector(".errorClaveC");
+    const errorClaveN = document.querySelector(".errorClaveN");
     const localizacion = document.getElementById("location");
-    const errorLocalizacion = document.querySelector(".errorLocalizacion");
+    const errorLocalizacionC = document.querySelector(".errorLocalizacionC");
+    const errorLocalizacionN = document.querySelector(".errorLocalizacionN");
     const error = document.querySelector(".error");
 
     form.addEventListener("submit", e => {
@@ -78,171 +113,59 @@ document.addEventListener("DOMContentLoaded", () => {
         localizacion.value.trim() === ""
       ) {
         e.preventDefault();
-        error.style.display = "block";
+        error.style.visibility = "visible";
       }
-      errorClave.innerText = "";
-      errorLocalizacion.innerText = "";
+     
       let ex_reg = /^[a-zA-Z]+$/;
       if (clave.value.trim() !== "") {
         if (!ex_reg.test(clave.value)) {
           e.preventDefault();
-          errorClave.style.color = "#f00424";
-          errorClave.innerText = "Este campo no admite números.";
+          errorClaveN.style.color = "#f00424";
+          errorClaveN.style.visibility = 'visible';
         } else if (clave.value.length > 20) {
           e.preventDefault();
-          errorClave.style.color = "#f00424";
-          errorClave.innerText = "Este campo admite hasta 20 caracteres.";
+          errorClaveC.style.color = "#f00424";
+          errorClaveC.style.visibility = 'visible';
         }
       }
 
       if (localizacion.value.trim() !== "") {
         if (!ex_reg.test(localizacion.value)) {
           e.preventDefault();
-          errorLocalizacion.style.color = "#f00424";
-          errorLocalizacion.innerText = "Este campo no admite números.";
+          errorLocalizacionN.style.color = "#f00424";
+          errorLocalizacionN.style.visibility = 'visible';
         } else if (localizacion.value.length > 10) {
           e.preventDefault();
-          errorLocalizacion.style.color = "#f00424";
-          errorLocalizacion.innerText =
-            "Este campo admite hasta 10 caracteres.";
+          errorLocalizacionC.style.color = "#f00424";
+          errorLocalizacionC.style.visibility = 'visible';
         }
       }
     });
     departamento.addEventListener("focus", () => {
-      error.style.display = "none";
-      errorClave.style.display = "none";
-      errorLocalizacion.style.display = "none";
+      error.style.visibility = "hidden";
+      errorClaveC.style.visibility = "hidden";
+      errorLocalizacionC.style.visibility = "hidden";
+      errorClaveN.style.visibility = "hidden";
+      errorLocalizacionN.style.visibility = "hidden";
     });
 
     clave.addEventListener("focus", () => {
-      error.style.display = "none";
-      errorClave.innerText = "";
-      clave.value = "";
+      error.style.visibility = "hidden";
+      errorClaveC.style.visibility = "hidden";
+      errorLocalizacionC.style.visibility = "hidden";
+      errorClaveN.style.visibility = "hidden";
+      errorLocalizacionN.style.visibility = "hidden";
+      clave.value = '';
+      localizacion.value = '';
     });
 
     localizacion.addEventListener("focus", () => {
-      error.style.display = "none";
-      errorLocalizacion.innerText = "";
-      localizacion.value = "";
+      error.style.visibility = "hidden";
+      errorClaveC.style.visibility = "hidden";
+      errorLocalizacionC.style.visibility = "hidden";
+      errorClaveN.style.visibility = "hidden";
+      errorLocalizacionN.style.visibility = "hidden";
+      clave.value = '';
+      localizacion.value = '';
     });
-  }
-
-  //fuera de .contenedor index.pug
-
-  //flechas de scroll subir y bajar con click y scroll
-  const bajar = document.querySelector(".bajar");
-  const subir = document.querySelector(".subir");
-
-  const cambiarConScroll = () => {
-    let alturaPantalla = document.body.scrollHeight - window.innerHeight - 200;
-    if (window.scrollY >= alturaPantalla) {
-      bajar.style.display = "none";
-      subir.style.display = "block";
-    } else if (window.scrollY <= 200) {
-      subir.style.display = "none";
-      bajar.style.display = "block";
-    }
-  };
-  window.addEventListener("scroll", cambiarConScroll);
-  cambiarConScroll();
-
-  bajar.addEventListener("click", () => {
-    window.scrollTo({
-      top: document.body.scrollHeight ,
-      behavior: "smooth"
-    });
-    bajar.style.display = "none";
-    subir.style.display = "block";
-  });
-  subir.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-    subir.style.display = "none";
-    bajar.style.display = "block";
-  });
-  //animación flechas 
-  bajar.style.transition = "transform 3s ease";
-  subir.style.transition = "transform 3s ease";
-  setInterval(() => {
-    bajar.style.transform = "scale(1.3)";
-    subir.style.transform = "scale(1.3)";
-
-    setTimeout(() => {
-      bajar.style.transform = "scale(1)";
-      subir.style.transform = "scale(1)";
-    }, 1000);
-  }, 2000);
-
-  //Contenedor de imagenes adicionales
-  let contenedorAbierto = null;
-  const botones = document.querySelectorAll(".ver-imagenes");
-  botones.forEach(boton => {
-    boton.addEventListener("click", () => {
-      try {
-        const objectId = boton.getAttribute("data-id");
-        const contenedorDeImagenes = document.querySelector(
-          `.imagen_adicional[data-id="${objectId}"]`
-        );
-        if (contenedorAbierto) {
-          return;
-        }
-
-        contenedorDeImagenes.style.display = "block";
-        contenedorAbierto = contenedorDeImagenes;
-
-        const imagenes = contenedorDeImagenes.querySelectorAll(
-          ".carrusel-image img"
-        );
-        const atras = contenedorDeImagenes.querySelector(".atras");
-        const adelante = contenedorDeImagenes.querySelector(".adelante");
-        const cerrar = contenedorDeImagenes.querySelector(".cerrar");
-
-        let indice = 0;
-        const mostrarImagen = indice => {
-          imagenes.forEach((img, i) => {
-            img.style.display = i === indice ? "block" : "none";
-          });
-        };
-
-        if (imagenes.length > 1) {
-          adelante.style.display = "block";
-          atras.style.display = "block";
-        }
-        atras.addEventListener("click", () => {
-          indice = indice === 0 ? imagenes.length - 1 : indice - 1;
-          mostrarImagen(indice);
-        });
-        adelante.addEventListener("click", () => {
-          indice = indice === imagenes.length - 1 ? 0 : indice + 1;
-          mostrarImagen(indice);
-        });
-        mostrarImagen(indice);
-
-        cerrar.addEventListener("click", () => {
-          contenedorDeImagenes.style.display = "none";
-          contenedorAbierto = null;
-        });
-      } catch (error) {
-        console.error("Error al abrir el contenedor de imágenes:", error);
-      }
-    });
-  });
-  //modo claro/oscuro
-  const body = document.body;
-  const claro = document.getElementById('ligth');
-  const oscuro = document.getElementById('dark');
-
-  claro.addEventListener('click',() => {
-      body.classList.remove('dark');
-      claro.style.display = 'none';
-      oscuro.style.display = 'block'
-  })
-  oscuro.addEventListener('click',() => {
-    body.classList.add('dark');
-    oscuro.style.display = 'none';
-    claro.style.display = 'block';
-  })
-
 });
