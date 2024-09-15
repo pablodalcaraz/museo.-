@@ -301,7 +301,7 @@ form {
     font-size: 12px;
 }
 
-.errorClaveC, .errorLocalizacionC, .errorClaveN, .errorLocalizacionN {
+.errorClave, .errorLocalizacion {
     visibility: hidden;
 }
 .titulo-principal h1 {

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     claro.style.display = 'none';
     oscuro.style.display = 'block';
   }
-  
+
     oscuro.addEventListener('click',() => {
       body.classList.add('dark');
       oscuro.style.display = 'none';
@@ -99,11 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const departamento = document.getElementById("departmentId");
     const clave = document.getElementById("clave");
-    const errorClaveC = document.querySelector(".errorClaveC");
-    const errorClaveN = document.querySelector(".errorClaveN");
+    const errorClave = document.querySelector(".errorClave");
     const localizacion = document.getElementById("location");
-    const errorLocalizacionC = document.querySelector(".errorLocalizacionC");
-    const errorLocalizacionN = document.querySelector(".errorLocalizacionN");
+    const errorLocalizacion = document.querySelector(".errorLocalizacion");
     const error = document.querySelector(".error");
 
     form.addEventListener("submit", e => {
@@ -115,56 +113,59 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         error.style.visibility = "visible";
       }
+     departamento.addEventListener('focus', () => {
+      error.style.visibility = 'hidden';
+      errorClave.style.visibility = "hidden";
+      errorLocalizacion.style.visibility = "hidden";
+      clave.value = '';
+      localizacion.value = '';
+     }) 
      
+    errorClave.innerText = '';
+    errorLocalizacion.innerText = '';
+  
       let ex_reg = /^[a-zA-Z]+$/;
       if (clave.value.trim() !== "") {
         if (!ex_reg.test(clave.value)) {
           e.preventDefault();
-          errorClaveN.style.color = "#f00424";
-          errorClaveN.style.visibility = 'visible';
+          errorClave.style.color = "#f00424";
+          errorClave.innerText = 'Este campo no admite núemeros.';
+          errorClave.style.visibility = 'visible';
         } else if (clave.value.length > 20) {
           e.preventDefault();
-          errorClaveC.style.color = "#f00424";
-          errorClaveC.style.visibility = 'visible';
+          errorClave.style.color = "#f00424";
+          errorClave.innerText = 'Este campo admite hasta 20 caracteres. '
+          errorClave.style.visibility = 'visible';
         }
       }
 
       if (localizacion.value.trim() !== "") {
         if (!ex_reg.test(localizacion.value)) {
           e.preventDefault();
-          errorLocalizacionN.style.color = "#f00424";
-          errorLocalizacionN.style.visibility = 'visible';
+          errorLocalizacion.style.color = "#f00424";
+          errorLocalizacion.innerText= 'Este campo no admite núemeros.';
+          errorLocalizacion.style.visibility = 'visible';
         } else if (localizacion.value.length > 10) {
           e.preventDefault();
-          errorLocalizacionC.style.color = "#f00424";
-          errorLocalizacionC.style.visibility = 'visible';
+          errorLocalizacion.style.color = "#f00424";
+          errorLocalizacion.innerText = 'Este campo admite hasta 20 caracteres.';
+          errorLocalizacion.style.visibility = 'visible';
         }
       }
-    });
-    departamento.addEventListener("focus", () => {
-      error.style.visibility = "hidden";
-      errorClaveC.style.visibility = "hidden";
-      errorLocalizacionC.style.visibility = "hidden";
-      errorClaveN.style.visibility = "hidden";
-      errorLocalizacionN.style.visibility = "hidden";
     });
 
     clave.addEventListener("focus", () => {
       error.style.visibility = "hidden";
-      errorClaveC.style.visibility = "hidden";
-      errorLocalizacionC.style.visibility = "hidden";
-      errorClaveN.style.visibility = "hidden";
-      errorLocalizacionN.style.visibility = "hidden";
+      errorClave.style.visibility = "hidden";
+      errorLocalizacion.style.visibility = "hidden";
       clave.value = '';
       localizacion.value = '';
     });
 
     localizacion.addEventListener("focus", () => {
       error.style.visibility = "hidden";
-      errorClaveC.style.visibility = "hidden";
-      errorLocalizacionC.style.visibility = "hidden";
-      errorClaveN.style.visibility = "hidden";
-      errorLocalizacionN.style.visibility = "hidden";
+      errorClave.style.visibility = "hidden";
+      errorLocalizacion.style.visibility = "hidden";
       clave.value = '';
       localizacion.value = '';
     });
