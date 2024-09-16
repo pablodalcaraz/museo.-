@@ -49,7 +49,7 @@ app.get('/search', async (req, res) => {
     try {
         const departmentId = req.query.departmentId || '';
         const keyword = req.query.keyword || '';
-        const location = req.query.geoLocation || '';
+        const location = req.query.location || '';
         const page = parseInt(req.query.page) || 1;
         const limit = 20; 
         const offset = (page - 1) * limit;
@@ -63,7 +63,7 @@ app.get('/search', async (req, res) => {
             url += `&q=${keyword}`;
         }
         if (location) {
-            url += `&q=''geoLocation=${location}`;
+            url += `&q=''location=${location}`;
         }
         
         console.log("URL de la API:", url);

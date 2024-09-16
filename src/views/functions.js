@@ -124,17 +124,18 @@ document.addEventListener("DOMContentLoaded", () => {
     errorClave.innerText = '';
     errorLocalizacion.innerText = '';
   
-      let ex_reg = /^[a-zA-Z]+$/;
+      let ex_reg = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/;
+      
       if (clave.value.trim() !== "") {
         if (!ex_reg.test(clave.value)) {
           e.preventDefault();
           errorClave.style.color = "#f00424";
-          errorClave.innerText = 'Este campo no admite núemeros.';
+          errorClave.innerText = '*Este campo no admite núemeros.';
           errorClave.style.visibility = 'visible';
         } else if (clave.value.length > 20) {
           e.preventDefault();
           errorClave.style.color = "#f00424";
-          errorClave.innerText = 'Este campo admite hasta 20 caracteres. '
+          errorClave.innerText = '*Este campo admite hasta 20 caracteres. '
           errorClave.style.visibility = 'visible';
         }
       }
@@ -143,12 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!ex_reg.test(localizacion.value)) {
           e.preventDefault();
           errorLocalizacion.style.color = "#f00424";
-          errorLocalizacion.innerText= 'Este campo no admite núemeros.';
+          errorLocalizacion.innerText= '*Este campo no admite núemeros.';
           errorLocalizacion.style.visibility = 'visible';
         } else if (localizacion.value.length > 10) {
           e.preventDefault();
           errorLocalizacion.style.color = "#f00424";
-          errorLocalizacion.innerText = 'Este campo admite hasta 20 caracteres.';
+          errorLocalizacion.innerText = '*Este campo admite hasta 20 caracteres.';
           errorLocalizacion.style.visibility = 'visible';
         }
       }
