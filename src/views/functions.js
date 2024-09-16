@@ -124,8 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
     errorClave.innerText = '';
     errorLocalizacion.innerText = '';
   
-      let ex_reg = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/;
-      
+    let ex_reg = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
       if (clave.value.trim() !== "") {
         if (!ex_reg.test(clave.value)) {
           e.preventDefault();
