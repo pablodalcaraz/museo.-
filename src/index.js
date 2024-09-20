@@ -149,33 +149,8 @@ app.get('/search', async (req, res) => {
     }
 });
 
-//solicitud a la API de los objetos por id para obtener tetalles especificos de los mismos, en este caso quiero obtener las imagenes adicionales para mostrarlas en aditionalImages.pug
-app.get('/object', async (req,res) =>{
-    try {
-        const objectId= req.params.id;
-        const response = await axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`);
 
-        if (response.data) {
-            const object = response.data;
-            const tituloTraducido = object.title ? await traducirTexto(object.title, 'en', 'es') : object.title;
 
-            const objetoTraducido = {
-                ...object,
-                title: tituloTraducido
-            }
-            console.log("Objeto traducido:", objetoTraducido);
-            res.render('results', {
-                object: objetoTraducido 
-            })
-        } else {
-            res.status(404).send('Objeto no encontrado.');
-        }
-    } catch (error) {
-        console.error('Error al obtener el objeto', error);
-        res.status(500).send(`Error al recuperar el objeto: ${error.message}`);
-        
-    }
-})
 
 function traducirTexto(texto, idiomaOrigen = 'en', idiomaDestino = 'es') {
 
